@@ -10,7 +10,7 @@
 
 a:link,
 a:visited {
-	color: #52aa36;
+	color: #183a1d;
 	font-family: Avenir;
 }
 
@@ -27,7 +27,7 @@ p {
 }
 
 h1 {
-	color: #2b4d12;
+	color: #183a1d;
 	font-size: 1em;
 	font-family: Avenir;
 	text-decoration: underline;
@@ -36,11 +36,11 @@ h1 {
 }
 
 h2 {
-	color: #3f631e;
+	color: #183a1d;
 	text-align: center;
 	font-size: 1.4em;
-	border-top: 3px solid #3f631e;
-	border-bottom: 1px solid #3f631e;
+	border-top: 3px solid #183a1d;
+	border-bottom: 1px solid #183a1d;
 	background-color: #F6F8F3;
 	padding: 0 20px 2px 20px;
 	font-family: Avenir;
@@ -59,7 +59,7 @@ table {
 }
 
 thead th {
-	background-color: #688e4d;
+	background-color: #183a1d;
 	color: #fffdfd;
 	font-size: 28px;
 	font-weight: bold;
@@ -77,7 +77,7 @@ tbody td {
 	font-family: 'Arial', sans-serif;
 	color: #333;
 	padding: 10px;
-	border: 1px solid #688e4d;
+	border: 1px solid #183a1d;
 	text-align: justify;
 }
 
@@ -104,6 +104,7 @@ table.centrar-contenido img {
 
 .cen {
 	text-align: center;
+	transition: all 0.3s ease-in;
 }
 
 .desc {
@@ -132,7 +133,7 @@ td {
 	font-family: Avenir;
 	color: #000;
 	padding: 10px 7px;
-	border-top: 1px solid #FFCA5E;
+	border-top: 1px solid #ffc400bb;
 	border-right: 1px solid #DDDDDD;
 	text-align: justify;
 }
@@ -154,10 +155,10 @@ td {
 	align-items: center;
 	text-align: center;
 
-	color: #3f631e;
+	color: #183a1d;
 	text-align: center;
-	border-top: 3px solid #3f631e;
-	border-bottom: 1px solid #3f631e;
+	border-top: 3px solid #183a1d;
+	border-bottom: 1px solid #183a1d;
 	background-color: #F6F8F3;
 	padding: 0 0 2px 5px;
 	font-family: Avenir;
@@ -172,4 +173,21 @@ td {
 	justify-content: space-around;
 	align-items: center;
 	text-align: center;
+}
+
+input[type="submit"], input[type="button"]{
+	padding: 10px 20px;
+	color: #DDDDDD;
+	background: #183a1d;
+	font-weight: 900;
+	font-size: large;
+	transition: all 0.3s ease-in-out;
+}
+
+input[type="submit"]:hover, input[type="button"]:hover, .cen:hover{
+	background: #183a1d;
+	color: #DDDDDD;
+}
+:root{
+    accent-color: #183a1d;
 }

@@ -139,7 +139,7 @@ if ($leer['activo'] == "S") {
                             } else {
                                 echo '<img src="fotos/sinfoto.png" alt="Candidato" onClick = "document.getElementById (\'candidato' . $row3['id'] . '\').checked = true;" /><br />';
                             }
-                            echo '<input type="radio" name="categoria' . $row5['id'] . '" id ="candidato' . $row3['id'] . '" value="' . $row3['id'] . '" />';
+                            echo '<input type="radio" onclick="cambiarColor(this)" name="categoria' . $row5['id'] . '" id ="candidato' . $row3['id'] . '" value="' . $row3['id'] . '" />';
                             echo '<strong>' . $row3['nombres'] . ' ' . $row3['apellidos'] . '</strong>';
                             echo '</td>';
                         }
@@ -188,3 +188,27 @@ if ($leer['activo'] == "S") {
     print "(comuníquese con el administrador del sistema)</div></body></html>";
 }
 mysqli_close($link);
+
+?>
+
+<!-- cambia el color de fondo para saber a quien se seleccionó -->
+<script>
+function cambiarColor(input) {
+  // Obtener todos los td en la fila
+  var tds = input.parentNode.parentNode.querySelectorAll("td");
+  
+  // Iterar sobre cada td
+  tds.forEach(function(td) {
+    // Verificar si el radio button asociado a este td está seleccionado
+    if (td.querySelector("input").checked) {
+      // Aplicar un color de fondo al td seleccionado
+      td.style.backgroundColor = "#5c631e9c";
+    } else {
+      // Si no está seleccionado, eliminar el color de fondo
+      td.style.backgroundColor = "";
+    }
+  });
+}
+
+	</script>
+
