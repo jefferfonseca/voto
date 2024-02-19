@@ -18,14 +18,14 @@ valida(array("requerido"=>"clave_actual,clave1_nueva,clave2_nueva"));
 
 if (strlen($_POST['clave1_nueva']) < 4) {
         include_once("encabezado.html");
-	print "<strong>La contrase�a debe ser como m�nimo de 4 caracteres<br />";
+	print "<strong>La contraseña debe ser como mínimo de 4 caracteres<br />";
         print"<br /><a href='javascript:history.go(-1)'>Volver al formulario</a></strong></div></body></html>";
         exit;
 }
 
 if ($_POST['clave1_nueva']!=$_POST['clave2_nueva']) {
         include_once("encabezado.html");
-        print "<strong>La confirmaci�n de la contrase�a est� mal escrita<br />";
+        print "<strong>La confirmación de la contraseña está mal escrita<br />";
         print"<br /><a href='javascript:history.go(-1)'>Volver al formulario</a></strong></div></body></html>";
         exit;
 }
@@ -42,7 +42,7 @@ if ($row = mysqli_fetch_array($resp)) {
 }
 else {
         include_once("encabezado.html");
-        print "<strong>La contrase�a actual no corresponde<br />";
+        print "<strong>La contraseña actual no corresponde<br />";
        	print"<br /><a href='javascript:history.go(-1)'>Volver al formulario</a></strong></div></body></html>";
        	exit;
 }
@@ -65,7 +65,7 @@ mysqli_close($link);
 else {
         include_once("encabezado.html");
         echo '<table>';
-        echo '<tr><td class="cen"><strong>Su sesi�n ha finalizado, por favor vuelva a ingresar al sistema</strong></td></tr>';
+        echo '<tr><td class="cen"><strong>Su sesión ha finalizado, por favor vuelva a ingresar al sistema</strong></td></tr>';
         echo '</table></div></body></html>';
 }
 ?>

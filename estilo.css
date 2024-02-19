@@ -1,23 +1,40 @@
-a:link,a:visited {
-	color: #52aa36;
-	font-family: arial, helvetica, sans-serif;
+/* Fuentes personalizadas */
+@font-face {
+	font-family: Avenir;
+	src: url(fonts/FontsFree-Net-Avenir-Light.woff);
 }
+
+* {
+	font-family: Avenir;
+}
+
+a:link,
+a:visited {
+	color: #52aa36;
+	font-family: Avenir;
+}
+
 a:hover {
 	color: #777;
 	text-decoration: none;
 }
-p{
+
+p {
 	font-size: 0.9em;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Avenir;
 	color: #000;
 	text-align: justify;
 }
+
 h1 {
-        color:#2b4d12;
+	color: #2b4d12;
 	font-size: 1em;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Avenir;
 	text-decoration: underline;
+	text-align: center;
+	font-size: larger;
 }
+
 h2 {
 	color: #3f631e;
 	text-align: center;
@@ -26,49 +43,93 @@ h2 {
 	border-bottom: 1px solid #3f631e;
 	background-color: #F6F8F3;
 	padding: 0 0 2px 5px;
+	font-family: Avenir;
 }
+
+/* Estilos para tablas */
 table {
 	margin: 0 auto;
 	text-align: left;
-	width: 400px;
-	border-collapse:collapse;
-	/* border:3px solid #FFCA5E; */
-	border:3px solid #688e4d;
+	width: 30%;
+	border-collapse: collapse;
+	border: none;
+	border-radius: 20px;
+	overflow: hidden;
+	/* Para ocultar los bordes redondeados que sobresalen */
 }
+
 thead th {
-	background-color:#688e4d;
-	height: 47px;
+	background-color: #688e4d;
 	color: #fffdfd;
-	font-size: 12pt;
+	font-size: 14px;
 	font-weight: bold;
-	padding: 0px 7px;
-	margin: 20px 0px 0px;
+	padding: 15px 10px;
 	text-align: center;
-	border-right: 1px solid #FCF1D4;
 }
+
+tbody tr:nth-child(odd) {
+	background-color: #f9f9f9;
+}
+
+tbody th,
+tbody td {
+	font-size: 14px;
+	font-family: 'Arial', sans-serif;
+	color: #333;
+	padding: 10px;
+	border: 1px solid #688e4d;
+	text-align: justify;
+}
+
+table.centrar-contenido {
+	width: 50%;
+}
+
+table.centrar-contenido tbody th,
+table.centrar-contenido tbody td {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+table.centrar-contenido a {
+	display: flex;
+	align-items: center;
+	text-align: left;
+}
+
+table.centrar-contenido img {
+	margin-right: 20px;
+}
+
 .cen {
 	text-align: center;
 }
 
 .desc {
 	font-size: 0.8em;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Avenir;
 	color: #000;
 	text-align: justify;
 }
+
 .txtinicial {
-        background-color:#ffca5e;
-        padding: 20px 10px 10px 10px;
+	font-family: Avenir;
+	font-weight: 700;
+	text-align: center;
+	background-color: #3333334a;
+	padding: 20px 10px 10px 10px;
 }
 
 tbody tr.odd {
 	background: #FFF8E8 url(bg_td2.jpg) repeat-x;
 }
 
-tbody th,td {
+tbody th,
+td {
 	font-size: 0.8em;
 	line-height: 1.4em;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Avenir;
 	color: #000;
 	padding: 10px 7px;
 	border-top: 1px solid #FFCA5E;

@@ -40,7 +40,7 @@ if(isset($_COOKIE['VotaDatAdmin'])) {
 		mysqli_query($link, $cons_sql);
 
 		//****obtener el id del grado guardado
-		$id_grado=mysql_insert_id($link);
+		$id_grado=mysqli_insert_id($link);
 
 		//******Guardamos los datos de control ******
                 $ffecha=date("Y-m-d");

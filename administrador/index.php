@@ -47,7 +47,7 @@ function LogControl($faccion2, $idest2) {
 		echo '<html>';
 		echo '<head><meta charset="UTF-8">
 ';
-		echo '<title>'.$leer['institucion'].' - Administración EducoVota</title>';
+		echo '<title>'.$leer['institucion'].' - Administración</title>';
 		echo '<link href="../estilo.css
 " rel="stylesheet" type="text/css" />';
 		echo '</head>';
@@ -57,7 +57,7 @@ function LogControl($faccion2, $idest2) {
 		$faccion="Ingreso_Admin-".$_POST['usuario'];
 		LogControl($faccion,$row['id']);
 		echo '<h2>BIENVENIDO(A): '.$row['nombres'].' '.$row['apellidos'].'</h2>';
-		echo '<table style="font-weight:bold";>';
+		echo '<table style="font-weight:bold"; class="centrar-contenido">';
 		echo '<thead><tr><th>MENÚ DE ADMINISTRACIÓN</th></tr></thead>';
 		echo '<tr><td><a href="javascript:NuevaVentana(\'resultados.php\')" title="Consultar resultados de votación"><img src="../iconos/box.png" border="0" alt="Folder" /> Resultados de votación</a></td></tr>';
 		echo '<tr><td><a href="javascript:NuevaVentana(\'general.php\')" title="Consulta de estudiantes por grado"><img src="../iconos/folder.png" border="0" alt="Folder" /> Consulta de estudiantes por grado</a></td></tr>';

@@ -19,7 +19,7 @@ echo $leer['descripcion'].'</h2><br />';
 <tr>
 <td>
 
-<tr><td></td><td><strong>Para realizar el proceso de votación siga los siguientes tres pasos:</strong></td></tr>
+</td><td><strong>Para realizar el proceso de votación siga los siguientes tres pasos:</strong></td></tr>
 <tr><td><img src="iconos/n1.png" style="float:left;" width="30px" alt="#1" /></td>
 <td>Ingrese al sistema de votación, escribiendo su número
  de documento (costado derecho de esta página).</td></tr>
@@ -35,7 +35,7 @@ echo $leer['descripcion'].'</h2><br />';
 </table>
 
 <form name="consulta" action="index.php" method="post">
-<table border="2">
+<table>
 <tr><td colspan="2" style="text-align:center;"><strong>Ingreso al sistema</strong></td></tr>
 <tr>
 <td><label for="documento">Documento del estudiante:</label></td>
@@ -45,7 +45,7 @@ echo $leer['descripcion'].'</h2><br />';
 <?php
 if ($leer['clave']=="S") {
 	echo '<tr>';
-	echo '<td><label for="contra">contraseña
+	echo '<td><label for="contra">Contraseña
  de acceso:</label></td>';
 	echo '<td><input type="password" name="contra" size="20" maxlength="50" title="Escriba la contraseña
  de acceso" /></td>';
