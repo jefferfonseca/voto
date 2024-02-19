@@ -12,7 +12,8 @@ if (!isset($_POST['envia_csv'])) {
 	// Muestra formulario para subir el archivo CSV
         echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">';
         echo '<html>';
-        echo '<head><meta charset="UTF-8">
+        echo '<head>	<meta charset="UTF-8"><link rel="icon" href="./../iconos/EscudoColegio.png" type="image/png">
+
 ';
         echo '<title>'.$leer['institucion'].' - Importar archivo</title>';
         echo '<link href="../estilo.css

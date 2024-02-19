@@ -42,7 +42,7 @@ h2 {
 	border-top: 3px solid #3f631e;
 	border-bottom: 1px solid #3f631e;
 	background-color: #F6F8F3;
-	padding: 0 0 2px 5px;
+	padding: 0 20px 2px 20px;
 	font-family: Avenir;
 }
 
@@ -61,7 +61,7 @@ table {
 thead th {
 	background-color: #688e4d;
 	color: #fffdfd;
-	font-size: 14px;
+	font-size: 28px;
 	font-weight: bold;
 	padding: 15px 10px;
 	text-align: center;
@@ -135,4 +135,41 @@ td {
 	border-top: 1px solid #FFCA5E;
 	border-right: 1px solid #DDDDDD;
 	text-align: justify;
+}
+
+.vto{
+	color: white;
+	text-align: center;
+	font-size: 25px;
+	font-weight: 700;
+}
+.nombrevota{
+	font-size: larger;
+	margin-top: 20px;
+}
+
+.encabezado-voto{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+
+	color: #3f631e;
+	text-align: center;
+	border-top: 3px solid #3f631e;
+	border-bottom: 1px solid #3f631e;
+	background-color: #F6F8F3;
+	padding: 0 0 2px 5px;
+	font-family: Avenir;
+	margin-bottom: 20px;
+}
+
+
+
+.content-encabezado{
+	width: 80%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	text-align: center;
 }
