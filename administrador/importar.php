@@ -3,8 +3,8 @@ require_once("../funciones.php");
 require_once("../conexionBD.php");
 $link=conectarse();
 //***Leer variables del sistema******
-$estado=mysql_query("select * from general",$link);
-$leer= mysql_fetch_array($estado);
+$estado=mysqli_query($link, "select * from general");
+$leer= mysqli_fetch_array($estado);
 
 //****** Verificamos si existe la cookie *****/
 if(isset($_COOKIE['VotaDatAdmin'])) {
@@ -65,7 +65,7 @@ else {
 							$fila=0;
 							//Elimina la tabla estudiantes
 							$cons_sql  = "DROP TABLE estudiantes";
-					                mysql_query($cons_sql,$link);
+					                mysqli_query($link, $cons_sql);
 							//Crea la tabla estudiantes
 							$cons_sql = "CREATE TABLE estudiantes (
 								id int(11) NOT NULL AUTO_INCREMENT,
@@ -75,20 +75,20 @@ else {
 								documento varchar(30) NOT NULL,
 								clave varchar(100) NOT NULL,
 								PRIMARY KEY (id))";
-					                mysql_query($cons_sql,$link);
+					                mysqli_query($link, $cons_sql);
 							//Elimina la tabla voto
 							$cons_sql  = "DROP TABLE voto";
-					                mysql_query($cons_sql,$link);
+					                mysqli_query($link, $cons_sql);
 							//Crea la tabla voto
 							$cons_sql="CREATE TABLE voto (
 								id int(11) NOT NULL AUTO_INCREMENT,
 								id_estudiante int(11) NOT NULL,
 								candidato int(11) NOT NULL,
 								PRIMARY KEY (id))";
-					                mysql_query($cons_sql,$link);
+					                mysqli_query($link, $cons_sql);
 							//Elimina la tabla de control
 							$cons_sql  = "DROP TABLE control";
-					                mysql_query($cons_sql,$link);
+					                mysqli_query($link, $cons_sql);
 							//Crea la tabla de control
 							$cons_sql="CREATE TABLE control (
 								id int(11) NOT NULL AUTO_INCREMENT,
@@ -98,14 +98,14 @@ else {
 								c_accion varchar(50) NOT NULL,
 								c_idest int(11) NOT NULL,
 								PRIMARY KEY (id))";
-					                mysql_query($cons_sql,$link);
+					                mysqli_query($link, $cons_sql);
 							while (($datos = fgetcsv($gestor, 1000, ";")) !== FALSE) {
 								$fila=$fila+1;
 								//Si no existe clave la guarda en blanco
 								if (count($datos)==4) $datos[]="";
 								//insertar registros en la tabla estudiantes
 								$cons_sql  = "INSERT INTO estudiantes (grado, nombres, apellidos, documento, clave) VALUES ('$datos[0]', '$datos[1]', '$datos[2]', '$datos[3]', md5('$datos[4]'))";
-						               	mysql_query($cons_sql,$link);
+						               	mysqli_query($link, $cons_sql);
 							}
 							include_once("encabezado2.html");
 							echo "<h2>Carga exitosa</h2>";
@@ -152,6 +152,6 @@ else {
         echo '<tr><td class="cen"><strong>Su sesión ha finalizado, por favor vuelva a ingresar al sistema</strong></td></tr>';
         echo '</table></div></body></html>';
 }
-mysql_close($link);
+mysqli_close($link);
 
 ?>

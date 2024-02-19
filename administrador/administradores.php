@@ -3,8 +3,8 @@ require_once("../funciones.php");
 require_once("../conexionBD.php");
 $link=conectarse();
 //***Leer variables del sistema******
-$estado=mysql_query("select * from general",$link);
-$leer= mysql_fetch_array($estado);
+$estado=mysqli_query($link, "select * from general");
+$leer= mysqli_fetch_array($estado);
 //****** Verificamos si existe la cookie *****/
 if(isset($_COOKIE['VotaDatAdmin'])) {
 	
@@ -33,8 +33,8 @@ if(isset($_COOKIE['VotaDatAdmin'])) {
 		
 		//*****Validamos que no exista un usuario duplicado**** 
 		$duplica=0;
-		$resp3=mysql_query("select usuario from administradores",$link);
-		while($row3 = mysql_fetch_array($resp3)) {
+		$resp3=mysqli_query($link, "select usuario from administradores");
+		while($row3 = mysqli_fetch_array($resp3)) {
 		        if (cambia_mayuscula($fusuario_adm)==cambia_mayuscula($row3["usuario"])){
 		               $duplica=1;
 		        }
@@ -48,7 +48,7 @@ if(isset($_COOKIE['VotaDatAdmin'])) {
 		
 		//******Guardamos los datos en la BD ******
 		$cons_sql  = sprintf("INSERT INTO administradores(usuario,nombres,apellidos,password) VALUES(%s,%s,%s,%s)", comillas($fusuario_adm),comillas($fnombres_adm),comillas($fapellidos_adm),comillas($fclave_adm));
-		mysql_query($cons_sql,$link);
+		mysqli_query($link, $cons_sql);
 
 		//****obtener el id del administrador guardado
 		$id_adm=mysql_insert_id($link);
@@ -59,7 +59,7 @@ if(isset($_COOKIE['VotaDatAdmin'])) {
                 $fip = $_SERVER['REMOTE_ADDR'];
                 $faccion="Admin_Crea_Administrador (id:".$id_adm.")";
                 $cons_sql5  = sprintf("INSERT INTO control(c_fecha,c_hora,c_ip,c_accion,c_idest) VALUES(%s,%s,%s,%s,%d)", comillas($ffecha), comillas($fhora), comillas($fip), comillas($faccion),$_COOKIE['VotaDatAdmin']);
-mysql_query($cons_sql5,$link);
+mysqli_query($link, $cons_sql5);
 
 	}
 	//****Actualizar informacion de administrador*******
@@ -79,7 +79,7 @@ mysql_query($cons_sql5,$link);
 		}
 		//****Actualizar en la BD*******
 		$cons_sql3  = sprintf("UPDATE administradores SET usuario=%s, nombres=%s, apellidos=%s, password=%s WHERE id=%d", comillas($fusuario_adm),comillas($fnombres_adm), comillas($fapellidos_adm), comillas($fclave_adm), $_POST['identificador']);
-		mysql_query($cons_sql3,$link);
+		mysqli_query($link, $cons_sql3);
 	
 		//******Guardamos los datos de control ******
                 $ffecha=date("Y-m-d");
@@ -87,7 +87,7 @@ mysql_query($cons_sql5,$link);
                 $fip = $_SERVER['REMOTE_ADDR'];
                 $faccion="Admin_Actualiza_Administrador (id:".$_POST['identificador'].")";
                 $cons_sql5  = sprintf("INSERT INTO control(c_fecha,c_hora,c_ip,c_accion,c_idest) VALUES(%s,%s,%s,%s,%d)", comillas($ffecha), comillas($fhora), comillas($fip), comillas($faccion),$_COOKIE['VotaDatAdmin']);
-mysql_query($cons_sql5,$link);
+mysqli_query($link, $cons_sql5);
 	
 	}
 	echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">';
@@ -145,8 +145,8 @@ mysql_query($cons_sql5,$link);
 	
 	//*****Formulario para editar administrador *******
 	if((isset($_GET['id'])) and ($_GET['id']!=md5(1)) and (isset($_GET['editar'])) and ($_GET['editar']=="ok")) { 
-		$resp4=mysql_query(sprintf("select * from administradores where md5(id)=%s",comillas($_GET['id'])),$link);
-        	if ($row4 = mysql_fetch_array($resp4)) {	
+		$resp4=mysqli_query($link, sprintf("select * from administradores where md5(id)=%s",comillas($_GET['id'])));
+        	if ($row4 = mysqli_fetch_array($resp4)) {	
 
 			echo '<br /><form name="editadmin" action="administradores.php" method="post">';
 		       	echo '<table>';
@@ -191,8 +191,8 @@ mysql_query($cons_sql5,$link);
 	//******Mostrar mensaje para borrar administrador*******
 	if((isset($_GET['id']))and($_GET['id']!=md5(1))and(isset($_GET['elimina']))and($_GET['elimina']=="0")) {
 		
-		$resp5=mysql_query(sprintf("select usuario from administradores where md5(id)=%s",comillas($_GET['id'])),$link);
-	        if ($row5 = mysql_fetch_array($resp5)) {
+		$resp5=mysqli_query($link, sprintf("select usuario from administradores where md5(id)=%s",comillas($_GET['id'])));
+	        if ($row5 = mysqli_fetch_array($resp5)) {
 
 			echo '<br /><div class="cen"><strong>';
 			echo '¿Desea borrar el administrador '.$row5['usuario'].' del sistema? ';
@@ -209,9 +209,9 @@ mysql_query($cons_sql5,$link);
 	
 	//*****Eliminar administrador******
 	if((isset($_GET['id']))and($_GET['id']!=md5(1))and(isset($_GET['elimina']))and($_GET['elimina']=="1")) {
-		$resp6=mysql_query(sprintf("select usuario from administradores where md5(id)=%s",comillas($_GET['id'])),$link);
-	        $row6 = mysql_fetch_array($resp6);
-		$resp2=mysql_query(sprintf("delete from administradores where md5(id)=%s",comillas($_GET['id'])),$link);
+		$resp6=mysqli_query($link, sprintf("select usuario from administradores where md5(id)=%s",comillas($_GET['id'])));
+	        $row6 = mysqli_fetch_array($resp6);
+		$resp2=mysqli_query($link, sprintf("delete from administradores where md5(id)=%s",comillas($_GET['id'])));
 
 		//******Guardamos los datos de control ******
                 $ffecha=date("Y-m-d");
@@ -219,7 +219,7 @@ mysql_query($cons_sql5,$link);
                 $fip = $_SERVER['REMOTE_ADDR'];
                 $faccion="Admin_Borra_Administrador (usuario:".$row6['usuario'].")";
                 $cons_sql5  = sprintf("INSERT INTO control(c_fecha,c_hora,c_ip,c_accion,c_idest) VALUES(%s,%s,%s,%s,%d)", comillas($ffecha), comillas($fhora), comillas($fip), comillas($faccion),$_COOKIE['VotaDatAdmin']);
-mysql_query($cons_sql5,$link);
+mysqli_query($link, $cons_sql5);
 
 	}
 	
@@ -227,8 +227,8 @@ mysql_query($cons_sql5,$link);
 	echo '<br /><table>';
 	echo '<thead><tr><th>NOMBRE</th><th colspan="2">OPCIONES</th></tr></thead>';
 	$ContAdm=0;
-	$resp=mysql_query(sprintf("select * from administradores order by nombres"),$link);
-	while($row = mysql_fetch_array($resp)) {
+	$resp=mysqli_query($link, sprintf("select * from administradores order by nombres"));
+	while($row = mysqli_fetch_array($resp)) {
 		if ($row['id']!=1) {
 			echo '<tr>';
 			echo '<td>'.$row['nombres'].' '.$row['apellidos'].' ('.$row['usuario'].')</td>';
@@ -251,5 +251,5 @@ else {
         echo '<tr><td class="cen"><strong>Su sesión ha finalizado, por favor vuelva a ingresar al sistema</strong></td></tr>';
         echo '</table></div></body></html>';
 }
-mysql_close($link);
+mysqli_close($link);
 ?>

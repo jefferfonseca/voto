@@ -3,8 +3,8 @@ require_once("../funciones.php");
 require_once("../conexionBD.php");
 $link=conectarse(); 
 //***Leer variables del sistema******
-$estado=mysql_query("select * from general",$link);
-$leer= mysql_fetch_array($estado);
+$estado=mysqli_query($link, "select * from general");
+$leer= mysqli_fetch_array($estado);
 //****** Verificamos si existe la cookie *****/
 if(isset($_COOKIE['VotaDatAdmin'])) {
 
@@ -68,8 +68,8 @@ if(isset($_COOKIE['VotaDatAdmin'])) {
 	echo $_POST['fdia'].'/'.$_POST['fmes'].'/'.$_POST['fano'];
 	echo '</strong></p><table>';
 	echo '<thead><tr><th>No.</th><th>Hora</th><th>IP</th><th>Acción</th><th>ID</th></tr></thead>';
-	$resp=mysql_query(sprintf("select * from control where c_fecha=%s",comillas($fecha)),$link);
-	while($row = mysql_fetch_array($resp)) {
+	$resp=mysqli_query($link, sprintf("select * from control where c_fecha=%s",comillas($fecha)));
+	while($row = mysqli_fetch_array($resp)) {
 		$ContReg=$ContReg+1;
 		echo '<tr>';	
 		echo '<td class="cen">'.$ContReg.'</td>';
@@ -94,5 +94,5 @@ else {
         echo '<tr><td class="cen"><strong>Su sesión ha finalizado, por favor vuelva a ingresar al sistema</strong></td></tr>';
         echo '</table></div></body></html>';
 }
-mysql_close($link);
+mysqli_close($link);
 ?>

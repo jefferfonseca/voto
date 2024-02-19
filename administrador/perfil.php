@@ -49,7 +49,7 @@ else {
 //********************************
 
 $cons_sql  = sprintf("UPDATE administradores SET usuario=%s, adm_nombres=%s, adm_apellidos=%s WHERE id=%d", comillas($fadmusuario), comillas($fadmnombres), comillas($fadmapellidos), $_POST['admidentifica']);
-mysql_query($cons_sql,$link);
+mysqli_query($link, $cons_sql);
 
 //******Guardamos los datos de control ******
 $ffecha=date("Y-m-d");
@@ -57,9 +57,9 @@ $fhora=date("G:i:s");
 $fip = $_SERVER['REMOTE_ADDR']; 
 $faccion="Admin_CambioPerfil";
 $cons_sql2  = sprintf("INSERT INTO control(c_fecha,c_hora,c_ip,c_accion,c_idest) VALUES(%s,%s,%s,%s,%d)", comillas($ffecha), comillas($fhora), comillas($fip), comillas($faccion),$_POST['admidentifica']);
-mysql_query($cons_sql2,$link);
+mysqli_query($link, $cons_sql2);
 include_once("confirma2.html");	
-mysql_close($link);
+mysqli_close($link);
 }
 }
 else {

@@ -1,10 +1,11 @@
 <?php
 require_once("../funciones.php");
 require_once("../conexionBD.php");
+
 $link=conectarse();
 //***Leer variables del sistema******
-$estado=mysql_query("select * from general",$link);
-$leer= mysql_fetch_array($estado);
+$estado=mysqli_query($link, "select * from general");
+$leer= mysqli_fetch_array($estado);
 if (!isset($_POST['envia_acceso'])) {
         include_once("ingreso.html");
 }
@@ -35,11 +36,11 @@ function LogControl($faccion2, $idest2) {
 	$fhora=date("G:i:s");
 	$fip = $_SERVER['REMOTE_ADDR'];
 	$cons_sql  = sprintf("INSERT INTO control(c_fecha,c_hora,c_ip,c_accion,c_idest) VALUES(%s,%s,%s,%s,%d)", comillas($ffecha), comillas($fhora), comillas($fip), comillas($faccion2),$idest2);
-	mysql_query($cons_sql,$link);
+	mysqli_query($link, $cons_sql);
 } 
 	
-	$resp=mysql_query(sprintf("select id,nombres,apellidos from administradores where usuario=%s and password=%s",comillas($_POST['usuario']),comillas($clave)),$link);
-	if ($row= mysql_fetch_array($resp)) {
+	$resp=mysqli_query($link, sprintf("select id,nombres,apellidos from administradores where usuario=%s and password=%s",comillas($_POST['usuario']),comillas($clave)));
+	if ($row= mysqli_fetch_array($resp)) {
 		//**** Creamos la cookie
 		setcookie("VotaDatAdmin", $row['id'], time()+3600);
 		echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">';
@@ -87,6 +88,5 @@ function LogControl($faccion2, $idest2) {
 		echo '<a href="javascript:history.go(-1)">Volver a intentar</a></strong></td></tr>';
 		echo '</table></div></body></html>';
 	}
-	mysql_close($link);
 }
 ?>

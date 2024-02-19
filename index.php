@@ -3,8 +3,8 @@ require_once("funciones.php");
 require_once("conexionBD.php");
 $link=conectarse();
 //****Verificar si el sistema se encuentra activo*****
-$estado=mysql_query("select * from general",$link);
-$leer= mysql_fetch_array($estado);
+$estado=mysqli_query( $link, "select * from general");
+$leer= mysqli_fetch_array($estado);
 if ($leer['activo']=="S") {
 
 if (!isset($_POST['envia_consulta'])) {
@@ -36,8 +36,8 @@ if ($leer['clave']=="S") {
 		print"<br /><a href='javascript:history.go(-1)'>Volver al formulario</a></strong></div></body></html>";
 		exit;
 	}
-	$resp6=mysql_query(sprintf("select id from estudiantes where documento=%s AND clave=%s", comillas($DocEst), comillas($ContraEst)),$link);
-	if (!$row6= mysql_fetch_array($resp6)) {
+	$resp6=mysqli_query($link, sprintf("select id from estudiantes where documento=%s AND clave=%s", comillas($DocEst), comillas($ContraEst)));
+	if (!$row6= mysqli_fetch_array($resp6)) {
 		include_once("encabezado.html");
 		print "<strong>La contraseña
  de acceso es inválida<br />";
@@ -54,11 +54,11 @@ function LogControl($faccion2, $idest2) {
 	$fhora=date("G:i:s");
 	$fip = $_SERVER['REMOTE_ADDR'];
 	$cons_sql  = sprintf("INSERT INTO control(c_fecha,c_hora,c_ip,c_accion,c_idest) VALUES(%s,%s,%s,%s,%d)", comillas($ffecha), comillas($fhora), comillas($fip), comillas($faccion2),$idest2);
-	mysql_query($cons_sql,$link);
+	mysqli_query($link, $cons_sql);
 }
 //***** VALIDAMOS QUE EL ESTUDIANTE NO HAYA VOTADO*****
-$resp2=mysql_query(sprintf("select id_estudiante from voto, estudiantes where documento=%s and id_estudiante=estudiantes.id",comillas($DocEst)),$link);
-        if ($row2= mysql_fetch_array($resp2)) {
+$resp2=mysqli_query($link, sprintf("select id_estudiante from voto, estudiantes where documento=%s and id_estudiante=estudiantes.id",comillas($DocEst)));
+        if ($row2= mysqli_fetch_array($resp2)) {
 		$faccion="Intento-IngresoDuplicado";
 		LogControl($faccion,$row2['id_estudiante']);
 		include_once("encabezado.html");
@@ -67,8 +67,8 @@ $resp2=mysql_query(sprintf("select id_estudiante from voto, estudiantes where do
 		exit;
 	}
 
-	$resp=mysql_query(sprintf("select id,nombres,apellidos,grado from estudiantes where documento=%s",comillas($DocEst)),$link);
-	if ($row= mysql_fetch_array($resp)) {
+	$resp=mysqli_query($link, sprintf("select id,nombres,apellidos,grado from estudiantes where documento=%s",comillas($DocEst)));
+	if ($row= mysqli_fetch_array($resp)) {
 		$IdEncrip=md5($row['id']);
 		//**** Creamos la cookie
 		setcookie("DataVota", $DocEst, time()+3600);
@@ -98,13 +98,13 @@ $resp2=mysql_query(sprintf("select id_estudiante from voto, estudiantes where do
 		echo '<tr>';
 		echo '<td>';
         //Leemos la lista de categorías que aparecerán en el Tarjetón
-		$resp5=mysql_query("select * from categorias order by id",$link);
-		while($row5 = mysql_fetch_array($resp5)) {
+		$resp5=mysqli_query($link, "select * from categorias order by id");
+		while($row5 = mysqli_fetch_array($resp5)) {
             //Verificamos si existe un grado con el mismo nombre de la categoría
             //para tener en cuenta para las votaciones de los candidatos por grado.
             $vrep=0;
-            $resp9=mysql_query("select * from grados",$link);
-            while($row9 = mysql_fetch_array($resp9)) {
+            $resp9=mysqli_query($link, "select * from grados");
+            while($row9 = mysqli_fetch_array($resp9)) {
                 $grados[$row9["id"]]=$row9["grado"];
                 if (cambia_mayuscula($row5['nombre'])==cambia_mayuscula($row9['grado'])) {
                     $vrep=1;
@@ -113,8 +113,8 @@ $resp2=mysql_query(sprintf("select id_estudiante from voto, estudiantes where do
         //Se muestran los candidatos por grado (pertenecen al mismo grado del estudiante) o de otras categorías
         if ((cambia_mayuscula($grados[$row['grado']])==cambia_mayuscula($row5['nombre']))  or ($vrep==0)) {
 			//*****Contar el total de candidatos por categoria******
-			$resp8=mysql_query(sprintf("select count(nombres) from candidatos where representante=%d",$row5['id'],$link));			
-			$row8 = mysql_fetch_array($resp8);
+			$resp8=mysqli_query($link, sprintf("select count(nombres) from candidatos where representante=%d",$row5['id']));			
+			$row8 = mysqli_fetch_array($resp8);
 			if ($row8[0]>0) {
                 $catarj = $catarj . $row5['id'] . ",";
                 echo '<div align="center">';
@@ -122,8 +122,8 @@ $resp2=mysql_query(sprintf("select id_estudiante from voto, estudiantes where do
 	    		echo '<thead><tr><th colspan="'.$row8[0].'" class="vto";>'.$row5['descripcion'].'</th></tr></thead>';
 		    	echo '<tr>';
     			# MOSTRAR CANDIDATOS
-	    		$resp3=mysql_query(sprintf("select * from candidatos where representante=%d order by apellidos DESC",$row5['id']),$link);
-		    	while($row3 = mysql_fetch_array($resp3)) {
+	    		$resp3=mysqli_query($link, sprintf("select * from candidatos where representante=%d order by apellidos DESC",$row5['id']));
+		    	while($row3 = mysqli_fetch_array($resp3)) {
     				echo '<td class="cen cd">';
 	    			if ((file_exists ('fotos/'.$row3['id'].'.jpg'))||(file_exists ('fotos/'.$row3['id'].'.png'))||(file_exists ('fotos/'.$row3['id'].'.gif'))) {
 
@@ -192,5 +192,5 @@ else {
 	print "<strong>EL SISTEMA DE votación ESTA INACTIVO</strong><br />";
     print "(comuníquese con el administrador del sistema)</div></body></html>";
 }
-mysql_close($link);
+mysqli_close($link);
 ?>

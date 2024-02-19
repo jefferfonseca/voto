@@ -3,8 +3,8 @@ require_once("../funciones.php");
 require_once("../conexionBD.php");
 $link=conectarse(); 
 //***Leer variables del sistema******
-$estado=mysql_query("select * from general",$link);
-$leer= mysql_fetch_array($estado);
+$estado=mysqli_query($link, "select * from general");
+$leer= mysqli_fetch_array($estado);
 //****** Verificamos si existe la cookie *****/
 if(isset($_COOKIE['VotaDatAdmin'])) {
 if(isset($_GET['id'])) {	
@@ -29,8 +29,8 @@ if ($_COOKIE['VotaDatAdmin']==1) {
 			
 			//*****Validamos que no exista un documento duplicado**** 
 			$duplica=0;
-			$resp3=mysql_query("select documento from estudiantes",$link);
-			while($row3 = mysql_fetch_array($resp3)) {
+			$resp3=mysqli_query($link, "select documento from estudiantes");
+			while($row3 = mysqli_fetch_array($resp3)) {
 					if (borra_espacios($fdoc_est)==borra_espacios($row3['documento'])){
 						   $duplica=1;
 					}
@@ -45,7 +45,7 @@ if ($_COOKIE['VotaDatAdmin']==1) {
 			
 			//******Guardamos los datos en la BD ******
 			$cons_sql  = sprintf("INSERT INTO estudiantes(grado,nombres,apellidos,documento,clave) VALUES(%d,%s,%s,%s,%s)", $fgrado, comillas($fnom_est),comillas($fape_est),comillas($fdoc_est),comillas($fclave_est));
-			mysql_query($cons_sql,$link);
+			mysqli_query($link, $cons_sql);
 
 			//****obtener el id del estudiante guardado
 			$id_est=mysql_insert_id($link);
@@ -56,7 +56,7 @@ if ($_COOKIE['VotaDatAdmin']==1) {
 					$fip = $_SERVER['REMOTE_ADDR'];
 					$faccion="Admin_Crea_Estudiante (id:".$id_est.")";
 					$cons_sql5  = sprintf("INSERT INTO control(c_fecha,c_hora,c_ip,c_accion,c_idest) VALUES(%s,%s,%s,%s,%d)", comillas($ffecha), comillas($fhora), comillas($fip), comillas($faccion),$_COOKIE['VotaDatAdmin']);
-	mysql_query($cons_sql5,$link);
+	mysqli_query($link, $cons_sql5);
 
 		}
 		//****Actualizar información de estudiante*******
@@ -77,7 +77,7 @@ if ($_COOKIE['VotaDatAdmin']==1) {
 			
 			//****Actualizar en la BD*******
 			$cons_sql3  = sprintf("UPDATE estudiantes SET grado=%d, nombres=%s, apellidos=%s, documento=%s, clave=%s WHERE id=%d", $fgrado, comillas($fnom_est), comillas($fape_est), comillas($fdoc_est), comillas($fclave_est), $_POST['identificador']);
-			mysql_query($cons_sql3,$link);
+			mysqli_query($link, $cons_sql3);
 		
 			//******Guardamos los datos de control ******
 					$ffecha=date("Y-m-d");
@@ -85,7 +85,7 @@ if ($_COOKIE['VotaDatAdmin']==1) {
 					$fip = $_SERVER['REMOTE_ADDR'];
 					$faccion="Admin_Actualiza_Estudiante (id:".$_POST['identificador'].")";
 					$cons_sql5  = sprintf("INSERT INTO control(c_fecha,c_hora,c_ip,c_accion,c_idest) VALUES(%s,%s,%s,%s,%d)", comillas($ffecha), comillas($fhora), comillas($fip), comillas($faccion),$_COOKIE['VotaDatAdmin']);
-	mysql_query($cons_sql5,$link);
+	mysqli_query($link, $cons_sql5);
 		
 		}	
 		
@@ -134,8 +134,8 @@ if ($_COOKIE['VotaDatAdmin']==1) {
 		
 		//*****Formulario para editar estudiante *******
 		if((isset($_GET['id'])) and (isset($_GET['est'])) and (isset($_GET['editar'])) and ($_GET['editar']=="ok")) { 
-			$resp4=mysql_query(sprintf("select * from estudiantes where md5(id)=%s",comillas($_GET['est'])),$link);
-				if ($row4 = mysql_fetch_array($resp4)) {	
+			$resp4=mysqli_query($link, sprintf("select * from estudiantes where md5(id)=%s",comillas($_GET['est'])));
+				if ($row4 = mysqli_fetch_array($resp4)) {	
 
 				echo '<br /><form name="editaest" action="consulta.php?id='.$_GET['id'].'" method="post">';
 					echo '<table>';
@@ -180,11 +180,11 @@ if ($_COOKIE['VotaDatAdmin']==1) {
 		//******Mostrar mensaje para borrar estudiante*******
 		if((isset($_GET['id']))and(isset($_GET['est']))and(isset($_GET['elimina']))and($_GET['elimina']=="0")) {
 			
-			$resp5=mysql_query(sprintf("select * from estudiantes where md5(id)=%s",comillas($_GET['est'])),$link);
-				if ($row5 = mysql_fetch_array($resp5)) {
+			$resp5=mysqli_query($link, sprintf("select * from estudiantes where md5(id)=%s",comillas($_GET['est'])));
+				if ($row5 = mysqli_fetch_array($resp5)) {
                     //Verificar que no existan votos para borrar el estudiante
-                    $resp9=mysql_query(sprintf("select id from voto where id_estudiante=%d",$row5['id']),$link);
-                    if (!$row9 = mysql_fetch_array($resp9)) {
+                    $resp9=mysqli_query($link, sprintf("select id from voto where id_estudiante=%d",$row5['id']));
+                    if (!$row9 = mysqli_fetch_array($resp9)) {
         				echo '<br /><div class="cen"><strong>';
 	        			echo '¿Desea borrar el estudiante '.$row5['apellidos'].' '.$row5['nombres'].' del sistema? ';
 		        		echo '<a href="consulta.php?id='.$_GET['id'].'&est='.$_GET['est'].'&elimina=1" title="Borrar estudiante del sistema">Si</a>&nbsp&nbsp&nbsp&nbsp';
@@ -204,9 +204,9 @@ if ($_COOKIE['VotaDatAdmin']==1) {
 		
 		//*****Eliminar estudiante******
 		if((isset($_GET['id']))and(isset($_GET['est']))and(isset($_GET['elimina']))and($_GET['elimina']=="1")) {
-			$resp6=mysql_query(sprintf("select * from estudiantes where md5(id)=%s",comillas($_GET['est'])),$link);
-				$row6 = mysql_fetch_array($resp6);
-				$resp2=mysql_query(sprintf("delete from estudiantes where md5(id)=%s",comillas($_GET['est'])),$link);
+			$resp6=mysqli_query($link, sprintf("select * from estudiantes where md5(id)=%s",comillas($_GET['est'])));
+				$row6 = mysqli_fetch_array($resp6);
+				$resp2=mysqli_query($link, sprintf("delete from estudiantes where md5(id)=%s",comillas($_GET['est'])));
 
 			//******Guardamos los datos de control ******
 					$ffecha=date("Y-m-d");
@@ -214,7 +214,7 @@ if ($_COOKIE['VotaDatAdmin']==1) {
 					$fip = $_SERVER['REMOTE_ADDR'];
 					$faccion="Admin_Borra_Estudiante (Grado:".$_GET['id']."-".$row6['apellidos']." ".$row6['nombres'].")";
 					$cons_sql5  = sprintf("INSERT INTO control(c_fecha,c_hora,c_ip,c_accion,c_idest) VALUES(%s,%s,%s,%s,%d)", comillas($ffecha), comillas($fhora), comillas($fip), comillas($faccion),$_COOKIE['VotaDatAdmin']);
-	mysql_query($cons_sql5,$link);
+	mysqli_query($link, $cons_sql5);
 
 		}	
 }
@@ -229,8 +229,8 @@ if ($_COOKIE['VotaDatAdmin']==1) {
 " rel="stylesheet" type="text/css" />';
 	echo '</head>';
 	echo '<body>';
-	$resp3=mysql_query(sprintf("select grado from grados where id=%d",$_GET['id']),$link);
-	if($row3 = mysql_fetch_array($resp3)) {
+	$resp3=mysqli_query($link, sprintf("select grado from grados where id=%d",$_GET['id']));
+	if($row3 = mysqli_fetch_array($resp3)) {
 		echo '<h1>'.$leer['institucion'].'</h1>';
 		echo '<h2>GRADO '.$row3['grado'].'</h2>';
 		echo '<div align="center">';
@@ -248,8 +248,8 @@ if ($_COOKIE['VotaDatAdmin']==1) {
 			}
 			$ContEst=0;
 			$VerAccion="Registro";
-			$resp=mysql_query(sprintf("select * from estudiantes where grado=%d order by apellidos",$_GET['id']),$link);
-			while($row = mysql_fetch_array($resp)) {
+			$resp=mysqli_query($link, sprintf("select * from estudiantes where grado=%d order by apellidos",$_GET['id']));
+			while($row = mysqli_fetch_array($resp)) {
 				echo '<tr>';
 				echo '<td>'.$row['apellidos'].' '.$row['nombres'].'</td>';
 		                echo '<td>'.$row['documento'].'</td>';
@@ -277,15 +277,15 @@ if ($_COOKIE['VotaDatAdmin']==1) {
 			$ContEst=0;
 			$VerAccion="Registro";
 			if($_GET['votos']=="si"){
-				$resp=mysql_query(sprintf("select distinct estudiantes.id, nombres,apellidos,documento from estudiantes,voto where estudiantes.grado=%d and estudiantes.id=id_estudiante order by apellidos",$_GET['id']),$link);
+				$resp=mysqli_query($link, sprintf("select distinct estudiantes.id, nombres,apellidos,documento from estudiantes,voto where estudiantes.grado=%d and estudiantes.id=id_estudiante order by apellidos",$_GET['id']));
 				echo '<thead><tr><th colspan="2">ESTUDIANTES CON VOTO</th></tr></thead>';
 			}
 			if($_GET['votos']=="no"){
-				$resp=mysql_query(sprintf("select nombres,apellidos,documento from estudiantes where estudiantes.grado=%d and estudiantes.id not in (select id_estudiante from voto) order by apellidos",$_GET['id']),$link);
+				$resp=mysqli_query($link, sprintf("select nombres,apellidos,documento from estudiantes where estudiantes.grado=%d and estudiantes.id not in (select id_estudiante from voto) order by apellidos",$_GET['id']));
 				echo '<thead><tr><th colspan="2">ESTUDIANTES SIN VOTO</th></tr></thead>';
 			}
 			if(isset($resp)) {
-				while($row = mysql_fetch_array($resp)) {
+				while($row = mysqli_fetch_array($resp)) {
 					echo '<tr>';
 					echo '<td>'.$row['apellidos'].' '.$row['nombres'].'</td>';
 					echo '<td>'.$row['documento'].'</td>';
@@ -317,5 +317,5 @@ else {
         echo '<tr><td class="cen"><strong>Su sesión ha finalizado, por favor vuelva a ingresar al sistema</strong></td></tr>';
         echo '</table></div></body></html>';
 }
-mysql_close($link);
+mysqli_close($link);
 ?>

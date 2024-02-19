@@ -17,8 +17,8 @@ if(isset($_GET['id'])) {
         echo '</head>';
         echo '<body>';
 	include_once("../java.html");
-        $resp=mysql_query(sprintf("select * from candidatos where md5(candidatos.id)=%s",comillas($_GET['id'])),$link);
-        if ($row = mysql_fetch_array($resp)) {
+        $resp=mysqli_query($link, sprintf("select * from candidatos where md5(candidatos.id)=%s",comillas($_GET['id'])));
+        if ($row = mysqli_fetch_array($resp)) {
 
 		$max_tamano=4048576;  //4 MB 
 		$dir_imagenes = "../fotos";
@@ -121,6 +121,6 @@ if(isset($_GET['id'])) {
         echo '</body></html>';
 }
 }
-mysql_close($link);
+mysqli_close($link);
 
 ?>

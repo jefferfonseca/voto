@@ -3,8 +3,8 @@ require_once("../funciones.php");
 require_once("../conexionBD.php");
 $link=conectarse();
 //***Leer variables del sistema******
-$estado=mysql_query("select * from general",$link);
-$leer= mysql_fetch_array($estado);
+$estado=mysqli_query($link, "select * from general");
+$leer= mysqli_fetch_array($estado);
 //****** Verificamos si existe la cookie *****/
 if(isset($_COOKIE['VotaDatAdmin'])) {
 	
@@ -23,8 +23,8 @@ if(isset($_COOKIE['VotaDatAdmin'])) {
 		
 		//*****Validamos que no exista una  categoría duplicada**** 
 		$duplica=0;
-		$resp3=mysql_query("select * from categorias",$link);
-		while($row3 = mysql_fetch_array($resp3)) {
+		$resp3=mysqli_query($link, "select * from categorias");
+		while($row3 = mysqli_fetch_array($resp3)) {
 		        if (cambia_mayuscula($fnombre_cat)==cambia_mayuscula($row3["nombre"])){
 		               $duplica=1;
 		        }
@@ -38,7 +38,7 @@ if(isset($_COOKIE['VotaDatAdmin'])) {
 		
 		//******Guardamos los datos en la BD ******
 		$cons_sql  = sprintf("INSERT INTO categorias(nombre,descripcion) VALUES(%s,%s)", comillas($fnombre_cat),comillas($fdescripcion_cat));
-		mysql_query($cons_sql,$link);
+		mysqli_query($link, $cons_sql);
 
 		//****obtener el id de la categoria guardada
 		$id_cat=mysql_insert_id($link);
@@ -49,7 +49,7 @@ if(isset($_COOKIE['VotaDatAdmin'])) {
                 $fip = $_SERVER['REMOTE_ADDR'];
                 $faccion="Admin_Crea_Categoria (id:".$id_cat.")";
                 $cons_sql5  = sprintf("INSERT INTO control(c_fecha,c_hora,c_ip,c_accion,c_idest) VALUES(%s,%s,%s,%s,%d)", comillas($ffecha), comillas($fhora), comillas($fip), comillas($faccion),$_COOKIE['VotaDatAdmin']);
-mysql_query($cons_sql5,$link);
+mysqli_query($link, $cons_sql5);
 
 	}
 	//****Actualizar información de la categoria*******
@@ -66,7 +66,7 @@ mysql_query($cons_sql5,$link);
 		}
 		//****Actualizar en la BD*******
 		$cons_sql3  = sprintf("UPDATE categorias SET nombre=%s, descripcion=%s WHERE id=%d", comillas($fnombre_cat),comillas($fdescripcion_cat), $_POST['identificador']);
-		mysql_query($cons_sql3,$link);
+		mysqli_query($link, $cons_sql3);
 	
 		//******Guardamos los datos de control ******
                 $ffecha=date("Y-m-d");
@@ -74,7 +74,7 @@ mysql_query($cons_sql5,$link);
                 $fip = $_SERVER['REMOTE_ADDR'];
                 $faccion="Admin_Actualiza_Categoria (id:".$_POST['identificador'].")";
                 $cons_sql5  = sprintf("INSERT INTO control(c_fecha,c_hora,c_ip,c_accion,c_idest) VALUES(%s,%s,%s,%s,%d)", comillas($ffecha), comillas($fhora), comillas($fip), comillas($faccion),$_COOKIE['VotaDatAdmin']);
-mysql_query($cons_sql5,$link);
+mysqli_query($link, $cons_sql5);
 	
 	}
 	echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">';
@@ -118,8 +118,8 @@ mysql_query($cons_sql5,$link);
 	
 	//*****Formulario para editar categoría *******
 	if((isset($_GET['id'])) and (isset($_GET['editar'])) and ($_GET['editar']=="ok")) { 
-		$resp4=mysql_query(sprintf("select * from categorias where md5(id)=%s",comillas($_GET['id'])),$link);
-        	if ($row4 = mysql_fetch_array($resp4)) {	
+		$resp4=mysqli_query($link, sprintf("select * from categorias where md5(id)=%s",comillas($_GET['id'])));
+        	if ($row4 = mysqli_fetch_array($resp4)) {	
 
 			echo '<br /><form name="editacat" action="categorias.php" method="post">';
 		       	echo '<table>';
@@ -149,11 +149,11 @@ mysql_query($cons_sql5,$link);
 	//******Mostrar mensaje para borrar categoría*******
 	if((isset($_GET['id']))and(isset($_GET['elimina']))and($_GET['elimina']=="0")) {		
 		
-		$resp5=mysql_query(sprintf("select * from categorias where md5(id)=%s",comillas($_GET['id'])),$link);
-	        if ($row5 = mysql_fetch_array($resp5)) {
+		$resp5=mysqli_query($link, sprintf("select * from categorias where md5(id)=%s",comillas($_GET['id'])));
+	        if ($row5 = mysqli_fetch_array($resp5)) {
 				//****Verificar que no existan candidatos para eliminar la categoría******
-				$resp9=mysql_query(sprintf("select id from candidatos where representante=%d",$row5['id']),$link);
-				if (!$row9 = mysql_fetch_array($resp9)) {
+				$resp9=mysqli_query($link, sprintf("select id from candidatos where representante=%d",$row5['id']));
+				if (!$row9 = mysqli_fetch_array($resp9)) {
 					echo '<br /><div class="cen"><strong>';
 					echo '¿Desea borrar la categoría '.$row5['nombre'].' del sistema? ';
 					echo '<a href="categorias.php?id='.$_GET['id'].'&elimina=1" title="Borrar categoría del sistema">Si</a>&nbsp&nbsp&nbsp&nbsp';
@@ -173,9 +173,9 @@ mysql_query($cons_sql5,$link);
 	
 	//*****Eliminar categoría******
 	if((isset($_GET['id']))and(isset($_GET['elimina']))and($_GET['elimina']=="1")) {
-		$resp6=mysql_query(sprintf("select * from categorias where md5(id)=%s",comillas($_GET['id'])),$link);
-	        $row6 = mysql_fetch_array($resp6);
-		$resp2=mysql_query(sprintf("delete from categorias where md5(id)=%s",comillas($_GET['id'])),$link);
+		$resp6=mysqli_query($link, sprintf("select * from categorias where md5(id)=%s",comillas($_GET['id'])));
+	        $row6 = mysqli_fetch_array($resp6);
+		$resp2=mysqli_query($link, sprintf("delete from categorias where md5(id)=%s",comillas($_GET['id'])));
 
 		//******Guardamos los datos de control ******
                 $ffecha=date("Y-m-d");
@@ -183,7 +183,7 @@ mysql_query($cons_sql5,$link);
                 $fip = $_SERVER['REMOTE_ADDR'];
                 $faccion="Admin_Borra_categoría (Nombre:".$row6['nombre'].")";
                 $cons_sql5  = sprintf("INSERT INTO control(c_fecha,c_hora,c_ip,c_accion,c_idest) VALUES(%s,%s,%s,%s,%d)", comillas($ffecha), comillas($fhora), comillas($fip), comillas($faccion),$_COOKIE['VotaDatAdmin']);
-mysql_query($cons_sql5,$link);
+mysqli_query($link, $cons_sql5);
 
 	}
 	
@@ -191,8 +191,8 @@ mysql_query($cons_sql5,$link);
 	echo '<br /><table>';
 	echo '<thead><tr><th>NOMBRE</th><th colspan="2">OPCIONES</th></tr></thead>';
 	$ContAdm=0;
-	$resp=mysql_query(sprintf("select * from categorias order by id"),$link);
-	while($row = mysql_fetch_array($resp)) {		
+	$resp=mysqli_query($link, sprintf("select * from categorias order by id"));
+	while($row = mysqli_fetch_array($resp)) {		
 			echo '<tr>';
 			echo '<td>'.$row['nombre'].' ('.$row['descripcion'].')</td>';
 			echo '<td class="cen"><a href="categorias.php?id='.md5($row['id']).'&editar=ok" title="Editar categoría"><img src="../iconos/lapiz.png" border="0" width="20px" border="0" alt="Editar" /></a></td>';
@@ -213,5 +213,5 @@ else {
         echo '<tr><td class="cen"><strong>Su sesión ha finalizado, por favor vuelva a ingresar al sistema</strong></td></tr>';
         echo '</table></div></body></html>';
 }
-mysql_close($link);
+mysqli_close($link);
 ?>
