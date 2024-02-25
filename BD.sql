@@ -7,7 +7,8 @@
 --
 -- Estructura de tabla para la tabla `administradores`
 --
-
+CREATE DATABASE educovota CHARACTER SET utf8 COLLATE utf8_general_ci;
+use educovota;
 CREATE TABLE IF NOT EXISTS `administradores` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `usuario` varchar(50) NOT NULL,
@@ -15,14 +16,14 @@ CREATE TABLE IF NOT EXISTS `administradores` (
   `apellidos` varchar(50) NOT NULL,
   `password` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Volcar la base de datos para la tabla `administradores`
 --
 
 INSERT INTO `administradores` (`id`, `usuario`, `nombres`, `apellidos`, `password`) VALUES
-(1, 'admin', 'Administrador', 'del sistema', '21232f297a57a5a743894a0e4a801fc3');
+(1, 'admin', 'Ing. Jeferson', 'Fonseca Soto', '21232f297a57a5a743894a0e4a801fc3');
 
 -- --------------------------------------------------------
 
@@ -37,14 +38,14 @@ CREATE TABLE IF NOT EXISTS `general` (
   `activo` varchar(1) NOT NULL,
   `clave` varchar(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Volcar la base de datos para la tabla `general`
 --
 
 INSERT INTO `general` (`id`, `institucion`, `descripcion`, `activo`, `clave`) VALUES
-(1, 'NOMBRE DE LA INSTITUCION', 'ELECCIONES ESTUDIANTILES', 'S', 'N');
+(1, 'Institución Educativa Técnica San Nicolás', 'ELECCIONES ESTUDIANTILES', 'S', 'S');
 
 -- --------------------------------------------------------
 --
@@ -57,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `candidatos` (
   `apellidos` varchar(50) NOT NULL,
   `representante` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Volcar la base de datos para la tabla `candidatos`
@@ -85,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `control` (
   `c_accion` varchar(50) NOT NULL,
   `c_idest` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -101,14 +102,7 @@ CREATE TABLE IF NOT EXISTS `estudiantes` (
   `documento` varchar(30) NOT NULL,  
   `clave` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Volcar la base de datos para la tabla `estudiantes`
---
-
-INSERT INTO `estudiantes` (`id`, `grado`, `nombres`, `apellidos`, `documento`, `clave`) VALUES
-(1, 11, 'ESTUDIANTE', 'PRUEBA', '12345', '827ccb0eea8a706c4c34a16891f84e7b');
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 
 -- --------------------------------------------------------
@@ -122,14 +116,14 @@ CREATE TABLE IF NOT EXISTS `categorias` (
   `nombre` varchar(100) NOT NULL,
   `descripcion` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Volcar la base de datos para la tabla `categorias`
 --
 
 INSERT INTO `categorias` (`id`, `nombre`, `descripcion`) VALUES
-(1, 'Personero', 'Candidatos a la personería'),
+(1, 'Personero', 'Candidatos a la Personería'),
 (2, 'Consejo', 'Candidatos al Consejo Directivo');
 
 
@@ -144,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `voto` (
   `id_estudiante` int(11) NOT NULL,
   `candidato` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 
 -- --------------------------------------------------------
@@ -157,7 +151,7 @@ CREATE TABLE IF NOT EXISTS `grados` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `grado` varchar(15) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 
 --
@@ -165,6 +159,7 @@ CREATE TABLE IF NOT EXISTS `grados` (
 --
 
 INSERT INTO `grados` (`id`, `grado`) VALUES
+(0, 'TRANSICIÓN'),
 (1, 'PRIMERO'),
 (2, 'SEGUNDO'),
 (3, 'TERCERO'),
