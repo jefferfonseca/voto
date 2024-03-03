@@ -88,7 +88,7 @@ mysqli_query($link, $cons_sql5);
 	echo '</head>';
 	echo '<body>';
 	echo '<h1>'.$leer['institucion'].'</h1>';
-	echo '<h2>categorías DE votación</h2>';
+	echo '<h2>Categorías de votación</h2>';
 	echo '<div align="center">';	
 	//*****Formulario para agregar una categoría *******
 	if((isset($_GET['agrega']))and($_GET['agrega']=="ok")) { 

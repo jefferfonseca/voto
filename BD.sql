@@ -158,16 +158,16 @@ CREATE TABLE IF NOT EXISTS `grados` (
 -- Volcar la base de datos para la tabla `grados`
 --
 
-INSERT INTO `grados` (`id`, `grado`) VALUES
-(0, 'TRANSICIÓN'),
-(1, 'PRIMERO'),
-(2, 'SEGUNDO'),
-(3, 'TERCERO'),
-(4, 'CUARTO'),
-(5, 'QUINTO'),
-(6, 'SEXTO'),
-(7, 'SEPTIMO'),
-(8, 'OCTAVO'),
-(9, 'NOVENO'),
-(10, 'DECIMO'),
-(11, 'UNDECIMO');
+INSERT INTO `grados` (`grado`) VALUES
+('TRANSICIÓN'),
+('PRIMERO'),
+('SEGUNDO'),
+('TERCERO'),
+('CUARTO'),
+('QUINTO'),
+('SEXTO'),
+('SEPTIMO'),
+('OCTAVO'),
+('NOVENO'),
+('DECIMO'),
+('UNDECIMO');
