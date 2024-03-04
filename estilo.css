@@ -1,194 +1,195 @@
 /* Fuentes personalizadas */
 @font-face {
-	font-family: Avenir;
-	src: url(fonts/FontsFree-Net-Avenir-Light.woff);
+  font-family: Avenir;
+  src: url(fonts/FontsFree-Net-Avenir-Light.woff);
 }
 
 * {
-	font-family: Avenir;
+  font-family: Avenir;
 }
 
 a:link,
 a:visited {
-	color: #183a1d;
-	font-family: Avenir;
+  color: #183a1d;
+  font-family: Avenir;
 }
 
 a:hover {
-	color: #777;
-	text-decoration: none;
+  color: #777;
+  text-decoration: none;
 }
 
 p {
-	font-size: 0.9em;
-	font-family: Avenir;
-	color: #000;
-	text-align: justify;
+  font-size: 0.9em;
+  font-family: Avenir;
+  color: #000;
+  text-align: justify;
 }
 
 h1 {
-	color: #183a1d;
-	font-size: 1em;
-	font-family: Avenir;
-	text-decoration: underline;
-	text-align: center;
-	font-size: larger;
+  color: #183a1d;
+  font-size: 1em;
+  font-family: Avenir;
+  text-decoration: underline;
+  text-align: center;
+  font-size: larger;
 }
 
 h2 {
-	color: #183a1d;
-	text-align: center;
-	font-size: 1.4em;
-	border-top: 3px solid #183a1d;
-	border-bottom: 1px solid #183a1d;
-	background-color: #F6F8F3;
-	padding: 0 20px 2px 20px;
-	font-family: Avenir;
+  color: #183a1d;
+  text-align: center;
+  font-size: 1.4em;
+  border-top: 3px solid #183a1d;
+  border-bottom: 1px solid #183a1d;
+  background-color: #f6f8f3;
+  padding: 0 20px 2px 20px;
+  font-family: Avenir;
 }
 
 /* Estilos para tablas */
 table {
-	margin: 0 auto;
-	text-align: left;
-	width: 30%;
-	border-collapse: collapse;
-	border: none;
-	border-radius: 20px;
-	overflow: hidden;
-	/* Para ocultar los bordes redondeados que sobresalen */
+  margin: 0 auto;
+  text-align: left;
+  width: 30%;
+  border-collapse: collapse;
+  border: none;
+  border-radius: 20px;
+  overflow: hidden;
+  /* Para ocultar los bordes redondeados que sobresalen */
 }
 
 thead th {
-	background-color: #183a1d;
-	color: #fffdfd;
-	font-size: 28px;
-	font-weight: bold;
-	padding: 15px 10px;
-	text-align: center;
+  background-color: #183a1d;
+  color: #fffdfd;
+  font-size: 28px;
+  font-weight: bold;
+  padding: 15px 10px;
+  text-align: center;
 }
 
 tbody tr:nth-child(odd) {
-	background-color: #f9f9f9;
+  background-color: #f9f9f9;
 }
 
 tbody th,
 tbody td {
-	font-size: 14px;
-	font-family: 'Arial', sans-serif;
-	color: #333;
-	padding: 10px;
-	border: 1px solid #183a1d;
-	text-align: justify;
+  font-size: 14px;
+  font-family: "Arial", sans-serif;
+  color: #333;
+  padding: 10px;
+  border: 1px solid #183a1d;
+  text-align: justify;
 }
 
 table.centrar-contenido {
-	width: 50%;
+  width: 50%;
 }
 
 table.centrar-contenido tbody th,
 table.centrar-contenido tbody td {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 table.centrar-contenido a {
-	display: flex;
-	align-items: center;
-	text-align: left;
+  display: flex;
+  align-items: center;
+  text-align: left;
 }
 
 table.centrar-contenido img {
-	margin-right: 20px;
+  margin-right: 20px;
 }
 
 .cen {
-	text-align: center;
-	transition: all 0.3s ease-in;
+  text-align: center;
+  transition: all 0.3s ease-in;
 }
 
 .desc {
-	font-size: 0.8em;
-	font-family: Avenir;
-	color: #000;
-	text-align: justify;
+  font-size: 0.8em;
+  font-family: Avenir;
+  color: #000;
+  text-align: justify;
 }
 
 .txtinicial {
-	font-family: Avenir;
-	font-weight: 700;
-	text-align: center;
-	background-color: #3333334a;
-	padding: 20px 10px 10px 10px;
+  font-family: Avenir;
+  font-weight: 700;
+  text-align: center;
+  background-color: #3333334a;
+  padding: 20px 10px 10px 10px;
 }
 
 tbody tr.odd {
-	background: #FFF8E8 url(bg_td2.jpg) repeat-x;
+  background: #fff8e8 url(bg_td2.jpg) repeat-x;
 }
 
 tbody th,
 td {
-	font-size: 0.8em;
-	line-height: 1.4em;
-	font-family: Avenir;
-	color: #000;
-	padding: 10px 7px;
-	border-top: 1px solid #ffc400bb;
-	border-right: 1px solid #DDDDDD;
-	text-align: justify;
+  font-size: 0.8em;
+  line-height: 1.4em;
+  font-family: Avenir;
+  color: #000;
+  padding: 10px 7px;
+  border-top: 1px solid #ffc400bb;
+  border-right: 1px solid #dddddd;
+  text-align: justify;
 }
 
-.vto{
-	color: white;
-	text-align: center;
-	font-size: 25px;
-	font-weight: 700;
+.vto {
+  color: white;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 700;
 }
-.nombrevota{
-	font-size: larger;
-	margin-top: 20px;
-}
-
-.encabezado-voto{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-
-	color: #183a1d;
-	text-align: center;
-	border-top: 3px solid #183a1d;
-	border-bottom: 1px solid #183a1d;
-	background-color: #F6F8F3;
-	padding: 0 0 2px 5px;
-	font-family: Avenir;
-	margin-bottom: 20px;
+.nombrevota {
+  font-size: larger;
+  margin-top: 20px;
 }
 
+.encabezado-voto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 
-
-.content-encabezado{
-	width: 80%;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	text-align: center;
+  color: #183a1d;
+  text-align: center;
+  border-top: 3px solid #183a1d;
+  border-bottom: 1px solid #183a1d;
+  background-color: #f6f8f3;
+  padding: 0 0 2px 5px;
+  font-family: Avenir;
+  margin-bottom: 20px;
 }
 
-input[type="submit"], input[type="button"]{
-	padding: 10px 20px;
-	color: #DDDDDD;
-	background: #183a1d;
-	font-weight: 900;
-	font-size: large;
-	transition: all 0.3s ease-in-out;
+.content-encabezado {
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
 }
 
-input[type="submit"]:hover, input[type="button"]:hover, .cen:hover{
-	background: #183a1d88;
-	color: #DDDDDD;
+input[type="submit"],
+input[type="button"] {
+  padding: 10px 20px;
+  color: #dddddd;
+  background: #183a1d;
+  font-weight: 900;
+  font-size: large;
+  transition: all 0.3s ease-in-out;
 }
 
-:root{
-    accent-color: #183a1d;
+input[type="submit"]:hover,
+input[type="button"]:hover,
+.cen:hover {
+  background: #183a1d88;
+  color: #dddddd;
+}
+
+:root {
+  accent-color: #183a1d;
 }

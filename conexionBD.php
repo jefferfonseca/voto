@@ -5,7 +5,7 @@ function conectarse()
     // $db_nombre = "educovota"; // Nombre de la Base de Datos que se desea utilizar
     // $db_user = "educolibre"; // Nombre del usuario con permisos para acceder a la BD
     // $db_pass = "educovota"; // Contraseña del usuario de la BD
-    
+
 
 
     $db_host = "localhost"; // Host BD al que conectarse, habitualmente es localhost
@@ -24,4 +24,3 @@ function conectarse()
 }
 
 $link = conectarse();
-?>

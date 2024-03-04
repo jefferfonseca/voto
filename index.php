@@ -11,7 +11,7 @@ if ($leer['activo'] == "S") {
         include_once "ingresa.html";
     } else {
 
-//******VALIDACION DE INGRESO AL SISTEMA******
+        //******VALIDACION DE INGRESO AL SISTEMA******
 
         if ($_POST['documento'] != "") {
             $DocEst = $_POST['documento'];
@@ -22,7 +22,7 @@ if ($leer['activo'] == "S") {
             print "<br /><a href='javascript:history.go(-1)'>Volver al formulario</a></strong></div></body></html>";
             exit;
         }
-//****Se valida la contraseña del estudiante si el sistema la solicita
+        //****Se valida la contraseña del estudiante si el sistema la solicita
         if ($leer['clave'] == "S") {
             if ($_POST['contra'] != "") {
                 $ContraEst = md5($_POST['contra']);
@@ -43,7 +43,7 @@ if ($leer['activo'] == "S") {
             }
         }
 
-//******Funcion para guardar los datos de control ******
+        //******Funcion para guardar los datos de control ******
         function LogControl($faccion2, $idest2)
         {
             require_once "conexionBD.php";
@@ -54,7 +54,7 @@ if ($leer['activo'] == "S") {
             $cons_sql = sprintf("INSERT INTO control(c_fecha,c_hora,c_ip,c_accion,c_idest) VALUES(%s,%s,%s,%s,%d)", comillas($ffecha), comillas($fhora), comillas($fip), comillas($faccion2), $idest2);
             mysqli_query($link, $cons_sql);
         }
-//***** VALIDAMOS QUE EL ESTUDIANTE NO HAYA VOTADO*****
+        //***** VALIDAMOS QUE EL ESTUDIANTE NO HAYA VOTADO*****
         $resp2 = mysqli_query($link, sprintf("select id_estudiante from voto, estudiantes where documento=%s and id_estudiante=estudiantes.id", comillas($DocEst)));
         if ($row2 = mysqli_fetch_array($resp2)) {
             $faccion = "Intento-IngresoDuplicado";
@@ -135,7 +135,6 @@ if ($leer['activo'] == "S") {
                                 } elseif (file_exists('fotos/' . $row3['id'] . '.gif')) {
                                     echo '<img src="fotos/' . $row3['id'] . '.gif" width="100" alt="Candidato" onClick = "document.getElementById (\'candidato' . $row3['id'] . '\').checked = true;" /><br />';
                                 }
-
                             } else {
                                 echo '<img src="fotos/sinfoto.png" alt="Candidato" onClick = "document.getElementById (\'candidato' . $row3['id'] . '\').checked = true;" /><br />';
                             }
@@ -193,22 +192,20 @@ mysqli_close($link);
 
 <!-- cambia el color de fondo para saber a quien se seleccionó -->
 <script>
-function cambiarColor(input) {
-  // Obtener todos los td en la fila
-  var tds = input.parentNode.parentNode.querySelectorAll("td");
-  
-  // Iterar sobre cada td
-  tds.forEach(function(td) {
-    // Verificar si el radio button asociado a este td está seleccionado
-    if (td.querySelector("input").checked) {
-      // Aplicar un color de fondo al td seleccionado
-      td.style.backgroundColor = "#5c631e9c";
-    } else {
-      // Si no está seleccionado, eliminar el color de fondo
-      td.style.backgroundColor = "";
+    function cambiarColor(input) {
+        // Obtener todos los td en la fila
+        var tds = input.parentNode.parentNode.querySelectorAll("td");
+
+        // Iterar sobre cada td
+        tds.forEach(function(td) {
+            // Verificar si el radio button asociado a este td está seleccionado
+            if (td.querySelector("input").checked) {
+                // Aplicar un color de fondo al td seleccionado
+                td.style.backgroundColor = "#5c631e9c";
+            } else {
+                // Si no está seleccionado, eliminar el color de fondo
+                td.style.backgroundColor = "";
+            }
+        });
     }
-  });
-}
-
-	</script>
-
+</script>

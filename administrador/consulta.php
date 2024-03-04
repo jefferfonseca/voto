@@ -10,7 +10,7 @@ $leer = mysqli_fetch_array($estado);
 if (isset($_COOKIE['VotaDatAdmin'])) {
     if (isset($_GET['id'])) {
 
-//Se valida que sea superadministrador para que pueda agregar o modificar estudiantes
+        //Se valida que sea superadministrador para que pueda agregar o modificar estudiantes
         if ($_COOKIE['VotaDatAdmin'] == 1) {
             //****Agregar nuevo estudiante*******
             if (isset($_POST['envia_estudiante'])) {
@@ -57,7 +57,6 @@ if (isset($_COOKIE['VotaDatAdmin'])) {
                 $faccion = "Admin_Crea_Estudiante (id:" . $id_est . ")";
                 $cons_sql5 = sprintf("INSERT INTO control(c_fecha,c_hora,c_ip,c_accion,c_idest) VALUES(%s,%s,%s,%s,%d)", comillas($ffecha), comillas($fhora), comillas($fip), comillas($faccion), $_COOKIE['VotaDatAdmin']);
                 mysqli_query($link, $cons_sql5);
-
             }
             //****Actualizar información de estudiante*******
             if (isset($_POST['edita_est'])) {
@@ -85,7 +84,6 @@ if (isset($_COOKIE['VotaDatAdmin'])) {
                 $faccion = "Admin_Actualiza_Estudiante (id:" . $_POST['identificador'] . ")";
                 $cons_sql5 = sprintf("INSERT INTO control(c_fecha,c_hora,c_ip,c_accion,c_idest) VALUES(%s,%s,%s,%s,%d)", comillas($ffecha), comillas($fhora), comillas($fip), comillas($faccion), $_COOKIE['VotaDatAdmin']);
                 mysqli_query($link, $cons_sql5);
-
             }
 
             echo '<div align="center">';
@@ -209,7 +207,6 @@ if (isset($_COOKIE['VotaDatAdmin'])) {
                 $faccion = "Admin_Borra_Estudiante (Grado:" . $_GET['id'] . "-" . $row6['apellidos'] . " " . $row6['nombres'] . ")";
                 $cons_sql5 = sprintf("INSERT INTO control(c_fecha,c_hora,c_ip,c_accion,c_idest) VALUES(%s,%s,%s,%s,%d)", comillas($ffecha), comillas($fhora), comillas($fip), comillas($faccion), $_COOKIE['VotaDatAdmin']);
                 mysqli_query($link, $cons_sql5);
-
             }
         }
 
@@ -260,7 +257,6 @@ if (isset($_COOKIE['VotaDatAdmin'])) {
                     echo '<td style="text-align:right;" colspan="4"><strong>Total estudiantes... ';
                 } else {
                     echo '<td style="text-align:right;" colspan="2"><strong>Total estudiantes... ';
-
                 }
                 echo $ContEst . '</strong></td></tr>';
                 echo '</table></div><br />';
@@ -289,7 +285,6 @@ if (isset($_COOKIE['VotaDatAdmin'])) {
                 echo '<td colspan="2" style="text-align:right;"><strong>Total estudiantes... ';
                 echo $ContEst . '</strong></td></tr>';
                 echo '</table></div>';
-
             }
             echo '<div class="cen">';
             echo '<a href="general.php" title="consulta por grados"><strong>< Volver a consulta por grados</strong></a>';
@@ -299,7 +294,6 @@ if (isset($_COOKIE['VotaDatAdmin'])) {
         }
         echo '</body>';
         echo '</html>';
-
     }
 } else {
     include_once "encabezado.html";

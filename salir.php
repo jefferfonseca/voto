@@ -1,8 +1,7 @@
 <?php
-//**** Eliminar cookie de sesión *****
-setcookie("DataVota", "", time()-3600);
+//**** Eliminar cookie de sesiï¿½n *****
+setcookie("DataVota", "", time() - 3600);
 
-//**** Redireccionar página web *****
-header ("Location: index.php"); 
+//**** Redireccionar pï¿½gina web *****
+header("Location: index.php");
 exit();
-?>
