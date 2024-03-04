@@ -27,7 +27,7 @@ if(isset($_COOKIE['VotaDatAdmin'])) {
 		echo '<p class="txtinicial">RESULTADOS '.cambia_mayuscula($row5['descripcion']).'</p>';
 		echo '<table>';
 		echo '<thead><tr><th>GRADO</th>';		
-		$resp4=mysqli_query($link, sprintf("select nombres,apellidos from candidatos where representante=%d order by apellidos DESC",$row5['id']));		
+		$resp4=mysqli_query($link, sprintf("select nombres,apellidos from candidatos where representante=%d order by id ASC",$row5['id']));		
 		$w=0;
 		while($row4 = mysqli_fetch_array($resp4)) {
 			echo '<th>';

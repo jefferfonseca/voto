@@ -232,7 +232,7 @@ mysqli_query($link, $cons_sql5);
 	echo '<br /><table>';
 	echo '<thead><tr><th colspan="2">CANDIDATO</th><th colspan="3">OPCIONES</th></tr></thead>';
 	$ContAdm=0;
-	$resp=mysqli_query($link, sprintf("select * from candidatos order by representante,apellidos DESC"));
+	$resp=mysqli_query($link, sprintf("select * from candidatos order by id asc"));
 	while($row = mysqli_fetch_array($resp)) {
 			echo '<tr>';
 			echo '<td class="cen">';
