@@ -185,9 +185,10 @@ input[type="submit"], input[type="button"]{
 }
 
 input[type="submit"]:hover, input[type="button"]:hover, .cen:hover{
-	background: #183a1d;
+	background: #183a1d88;
 	color: #DDDDDD;
 }
+
 :root{
     accent-color: #183a1d;
 }

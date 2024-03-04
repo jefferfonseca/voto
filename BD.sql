@@ -165,9 +165,11 @@ INSERT INTO `grados` (`grado`) VALUES
 ('TERCERO'),
 ('CUARTO'),
 ('QUINTO'),
-('SEXTO'),
+('SEXTO A'),
+('SEXTO B'),
 ('SEPTIMO'),
-('OCTAVO'),
+('OCTAVO A'),
+('OCTAVO B'),
 ('NOVENO'),
 ('DECIMO'),
 ('UNDECIMO');
