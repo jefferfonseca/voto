@@ -1,3 +1,6 @@
+/*
+Estructura basica de la bade de datos
+*/
 --
 -- Base de datos: `educovota`
 --
