@@ -50,7 +50,6 @@ h2 {
 table {
   margin: 0 auto;
   text-align: left;
-  width: 30%;
   border-collapse: collapse;
   border: none;
   border-radius: 20px;
@@ -82,7 +81,7 @@ tbody td {
 }
 
 table.centrar-contenido {
-  width: 50%;
+  width: 60%;
 }
 
 table.centrar-contenido tbody th,
